@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+
+\bibitem{lewin:2014:lewins}
+B.~Lewin, J.~Krebs, E.~Goldstein, and S.~Kilpatrick, {\em Lewin's Genes XI},
+  vol.~11.
+\newblock Jones \& Bartlett Learning, 2014.
+
+\bibitem{elloumi:2011:algorithms}
+M.~Elloumi and A.~Zomaya, {\em Algorithms in Computational Molecular Biology:
+  Techniques, Approaches and Applications}.
+\newblock Wiley Series in Bioinformatics, Wiley, 2011.
+
+\bibitem{treangen:2012:repetitive}
+T.~J. Treangen and S.~L. Salzberg, ``Repetitive dna and next-generation
+  sequencing: computational challenges and solutions,'' {\em Nature Reviews
+  Genetics}, vol.~13, pp.~36--46, 01 2012.
+
+\bibitem{figueroa:2013:raider:}
+N.~Figueroa, ``Raider: Rapid ab initio detection of elementary repeats,''
+  Master's thesis, Miami University, 2013.
+
+\bibitem{chao:2008:sequence}
+K.~Chao and L.~Zhang, {\em Sequence Comparison: Theory and Methods}.
+\newblock Computational Biology, Springer, 2008.
+
+\bibitem{buhler:2005:designing}
+J.~Buhler, U.~Keich, and Y.~Sun, ``Designing seeds for similarity search in
+  genomic dna,'' {\em J. Comput. Syst. Sci.}, vol.~70, pp.~342--363, May 2005.
+
+\end{thebibliography}

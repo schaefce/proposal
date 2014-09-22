@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {I}Introduction}{2}
+\contentsline {section}{\numberline {II}Background}{2}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Biological Background}{2}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Repetitive DNA}{2}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Spaced Seeds}{2}
+\contentsline {section}{\numberline {III}Proposed Research}{3}
+\contentsline {section}{\numberline {IV}Timeline}{3}
+\contentsline {section}{References}{3}

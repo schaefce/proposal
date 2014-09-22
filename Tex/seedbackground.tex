@@ -1,0 +1,15 @@
+\subsection{Spaced Seeds}
+\begin{defn}
+A \textbf{spaced seed} is a string $\pi$ over the alphabet $\Sigma =\lbrace 1,* \rbrace$, where a position with value 1 is a match and a position with value * is a "wildcard position" that can be either a match or a mismatch \cite{chao:2008:sequence} \end{defn}
+
+A spaced seed $\pi$ is defined by an ordered list of matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$. The number of matching positions is the seed's \textit{weight}, denoted $w_{\pi}$. The \textit{length} or \textit{span} of the seed is denoted $\lvert \pi \rvert$ \cite{buhler:2005:designing}
+
+\begin{defn}
+Let $\pi$ be a spaced seed of length $L$ with matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$. Let $q$ and $t$ be genomic sequences of length $L$. We say that $t$ \textbf{matches} $q$ with respect to $\pi$ if $q_{i} = t_{i} \forall i \in M_{\pi}$.
+\end{defn}
+
+\begin{defn}
+Let $\pi$ be a spaced seed of length $L$ with matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$. Let $Q$ and $T$ be genomic sequences of length $n$ with Lmer decompositions $x_{1},x_{2},\dotsc ,x_{k}$ and $y_{1},y_{2},\dotsc ,y_{k}$, respectively (where $k = n - L + 1$). We say that $T$ \textbf{matches} $Q$ with respect to $\pi$ if $\forall i \in \lbrace 0, n) \exists j \in \lbrace 0, n-L)$ such that $j \leq i < j+L$ and $x_{j}$ matches $y_{j}$ with respect to $\pi$.
+\end{defn}
+
+We say that two genomic sequences $Q,T$ match one another if every position $i \in \lbrace 0,n)$ corresponds to Lmers $x_{j} \in Q$ and $y_{j} \in T$ spanning positions $\lbrace j,j+L)$ that match one another with respect to some spaced seed $\pi$. 
