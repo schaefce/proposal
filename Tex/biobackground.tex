@@ -1,19 +1,10 @@
 \subsection{Biological Background}
-Every living organism inherits hereditary information from its parents that affect the organism's distinguishing traits. This information is embedded inside an organism's genetic material, a molecule known as deoxyribonucleic acid (DNA). An organism's \textit{genome} is the set of all DNA sequences associated with that organism \cite{lewin2014lewins}.
+Every living organism inherits hereditary information from its parents that affect the organism's distinguishing traits \cite{lewin2014lewins}. This information is embedded inside an organism's genetic material, a molecule known as deoxyribonucleic acid (DNA). An organism's \textit{genome} is the set of all DNA sequences associated with that organism.
 
-Each sequence of DNA is composed of a chain of nucleotides. There are four nucleotides found in DNA: Adenine (A), Cytosine (C), Guanine (G), and Thymine (T). DNA can therefore be represented as a finite string $s=s_{0}s_{1}...s{n-1}$ over the alphabet $\Sigma=\lbrace A, C, G, T\rbrace$ of nucleotides \cite{elloumi2011algorithms}.
+Each sequence of DNA is composed of a chain of nucleotides. There are four nucleotides found in DNA: Adenine (A), Cytosine (C), Guanine (G), and Thymine (T)  \cite{elloumi2011algorithms}. DNA can therefore be represented as a finite string $s=s_{0}s_{1}...s_{n-1}$ over the alphabet $\Sigma=\lbrace A, C, G, T\rbrace$ of nucleotides.
 
-\textit{Repetitive DNA} is defined as a set of discrete DNA sequences in the same genome that are similar or identical to one another \cite{treangen2012repetitive}. As previously mentioned, it makes up a significant portion of most genomes, especially in eukaryotic organisms. 
-
-\begin{defn}
-Let $F$ be a subsequence of the query sequence with Lmer decomposition $x_{1},x_{2},\dotsc ,x_{k}$, where $k=\lvert F \rvert - L + 1$. $F$ is an \textbf{elementary repeat} if:
-\begin{enumerate}
-\item $k \geq 1$
-\item $freq(F) \geq f$
-\item $freq(x_{i})=freq(F)$ for all Lmers $x_{i}$ in the decomposition
-\item $k$ is maximal. That is, there is no Lmer $y$ such that $y\circ F$ or $F\circ y$ meets conditions 1-3
-\end{enumerate} \cite{figueroa2013raider}.
-\end{defn}
-
+\textit{Repetitive DNA} is defined as a set of discrete DNA sequences in the same genome that are similar or identical to one another \cite{treangen2012repetitive}. As previously mentioned, it makes up a significant portion of most genomes, especially in eukaryotic organisms. We will go on to define these repetitive sequences (repeats) more concretely. 
+  
+ 
 
 

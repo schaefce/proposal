@@ -2,7 +2,7 @@
 \begin{defn}
 A \textbf{spaced seed} is a string $\pi$ over the alphabet $\Sigma =\lbrace 1,* \rbrace$, where a position with value 1 is a match and a position with value * is a "wildcard position" that can be either a match or a mismatch \cite{chao2008sequence}. \end{defn}
 
-A spaced seed $\pi$ is defined by an ordered list of matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$. The number of matching positions is the seed's \textit{weight}, denoted $w_{\pi}$. The \textit{length} or \textit{span} of the seed is denoted $\lvert \pi \rvert$ \cite{buhler2005designing}.
+A spaced seed $\pi$ is defined by an ordered list of matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$ \cite{buhler2005designing}. The number of matching positions is the seed's \textit{weight}, denoted $w_{\pi}$. The \textit{length} or \textit{span} of the seed is denoted $\lvert \pi \rvert$.
 
 \begin{defn}
 Let $\pi$ be a spaced seed of length $L$ with matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$. Let $q$ and $t$ be genomic sequences of length $L$. We say that $t$ \textbf{matches} $q$ with respect to $\pi$ if $q_{i} = t_{i} \forall i \in M_{\pi}$.

@@ -1,8 +1,68 @@
-\subsection{Survey of Repeat Finding Tools}
-Over the years following the discovery of the abundance of repetitive DNA, a variety of repeat finding algorithmic approaches and tools have been developed. Repeat finding tools can be broken down into two main categories:
-\begin{enumerate}
-\item{\textit{Library-based} tools compare input genomic data to an existing library of repeat sequences in order to identify known repeats.}
-\item{\textit{Ab initio} tools attempt to identify repeats without using any pre-existing knowledge of known repeat sequences or motifs.}
-\end{enumerate}
+\subsection{Defining Repeats}
+As previously mentioned, we can treat DNA sequences as strings over the alphabet $\Sigma=\lbrace A, C, G, T \rbrace$. For this reason, similar to string matchings, we can classify repeats as either exact or approximate. Zheng and Lonardi \cite{zheng2005discovery} proposed a bottom-up approach to defining repeats, through the definition of \textit{elementary repeats}. Elementary repeats are sequences that (1) meet the prescribed minimum length and frequency thresholds to be considered a repeat, and (2) do not contain any subsequences that would also satisfy (1). The following are the precise definitions for both exact and approximate elementary repeats, as described by Zheng and Lonardi.
 
- \cite{saha2008computational}. 
+\begin{defn}[Exact Elementary Repeat]
+Let $S$ be an input genomic sequence. Let $l, f$ be some fixed thresholds for the minimum length and frequency, respectively.  A subsequence $A$ of $S$ is an \textbf{exact elementary repeat} if:
+\begin{enumerate}
+\item{$|A| \geq l$}
+\item{$freq(A) \geq f$}
+\item{$\forall$ $i, j \in [0,|A|-1] s.t. j-i \geq l$,  $freq(A[i,j]) = freq(A)$}
+\item{$\not\exists\ A'$ s.t. $A \subset A'$ and $freq(A') = freq(A)$}
+\end{enumerate}
+\label{exactrept}
+\end{defn}
+
+From Definition~\ref{exactrept}, we see that $A$ must have sufficient length and frequency. Additionally, no subsequence of $A$ that satisfies these length and frequency requirements can occur outside of $A$. Lastly, $A$ must be maximal, meaning that $A$ is not a subsequence of some other sequence $A'$ with equal frequency in the genomic sequence.
+
+In order to go on to define an approximate elementary repeat, we must revisit the idea of inexact matching. We have two ways to quantify the distance or difference between two sequences \cite{kurtz2001reputer, zheng2005discovery}.
+\begin{notate}
+For two sequences $A$ and $A'$,
+\begin{enumerate}
+\item{Let $R=\lbrace r_{1},\dotsc, r_{d} \rbrace$ be any set of replacement operations that will transform $A$ into $A'$. Then,
+\begin{enumerate}
+\item{The \textit{Hamming distance} between $A$ and $A'$ is denoted $d_{H}(A, A') = \min{|R|}$.}
+\item{We say that $A$ \textit{k-mismatches} $A'$ if $d_{H}(A, A') \leq k$ for some constant $k$.}
+\item{If $A$ is a subsequence of $S$, let $S_{H}(k, A)$ be the set of all non-overlapping subsequences that form a k-mismatch with $A$ i.e. $A$ k-mismatches $B \ \forall B \in S_{H}(k, A)$.}
+\item{For any substring $C$ in $A$, the string $B'$ that results from the transformation operations in $R*$ (the set of replacement operations of minimum length) as the \textit{H-image} of $B$ induced by $A$ and is denoted as $I_{H}(A, A', C)$.}
+\end{enumerate}}
+\item{Let $E=\lbrace e_{1},\dotsc, e_{d} \rbrace$ be any set of elementary edit operations operations that will transform $A$ into $A'$. Then, 
+\begin{enumerate}
+\item{The \textit{edit distance} between $A$ and $A'$ is denoted $d_{E}(A, A') = \min{|E|}$.}
+\item{We say that $A$ \textit{k-differences} $A'$ if $d_{E}(A, A') \leq k$ for some constant $k$.} 
+\item{If $A$ is a subsequence of $S$, let $S_{E}(k, A)$ be the set of all non-overlapping subsequences that form a k-difference with $A$ i.e. $A$ k-differences $B \ \forall B \in S_{E}(k, A)$.}
+\item{For any substring $C$ in $A$, the string $B'$ that results from the transformation operations in $E*$ (the set of replacement operations of minimum length) is the \textit{E-image} of $B$ induced by $A$.}
+\end{enumerate}}
+\end{enumerate}
+\end{notate}
+
+\begin{defn}[$k$-Mismatches Approximate Elementary Repeat]
+Let $S$ be an input genomic sequence. Let $l, f$ be some fixed thresholds for the minimum length and frequency, respectively. Additionally, let $k$ be a fixed constant for matching. A subsequence $A$ of $S$ is a \textbf{$k$-mismatches approximate elementary repeat} if:
+\begin{enumerate}
+\item{$|A| \geq l$} 
+\item{$|S_{H}(k, A)| \geq f$}
+\item{$\forall$ $i, j \in [0,|A|-1] \ s.t. \ j-i \geq l$, every H-image of $A[i,j]$ induced by $A$ must form a $k$-mismatch with $A[i,j]$ and $|S_{H}(k, A[i,j])| = |S_{H}(k, A)|$}
+\end{enumerate}
+\label{approxrept}
+\end{defn}
+
+\begin{defn}[$k$-Differences Approximate Elementary Repeat]
+Let $S$ be an input genomic sequence. Let $l, f$ be some fixed thresholds for the minimum length and frequency, respectively. Additionally, let $k$ be a fixed constant for matching. A subsequence $A$ of $S$ is a \textbf{k-differences approximate elementary repeat} if:
+\begin{enumerate}
+\item{$|A| \geq l$} %maximal length
+\item{$|S_{E}(k, A)| \geq f$}
+\item{$\forall$ $i, j \in [0,|A|-1] \ s.t. \ j-i \geq l$, every E-image of $A[i,j]$ induced by $A$ must form a $k$-difference with $A[i,j]$ and $|S_{E}(k, A[i,j])| = |S_{E}(k, A)|$}
+\end{enumerate}
+\label{approxrept}
+\end{defn}
+
+
+\subsection{Survey of Repeat Finding Tools}
+Over the years following the discovery of the abundance of repetitive DNA, a variety of repeat finding algorithmic approaches and tools have been developed \cite{saha2008computational}. Repeat finding tools can be broken down into two main categories: library-based and ab initio.
+
+\textit{Library-based tools} compare input genomic data to an existing library of repeat sequences in order to identify known repeats. RepeatMasker \cite{smit1996repeatmasker} is currently the most widely used library-based repeat finding tool \cite{saha2008computational}. It compares the consensus sequences from known repeat families, stored in a database called RepBase, to search for new members of each family based on similarity.
+
+\textit{Ab initio tools} attempt to identify repeats without using any pre-existing knowledge of known repeat sequences or motifs. While both of these techniques are widely used, \textit{ab initio} tools are becoming increasingly important due to the rise in number and diversity of sequences coming from genome sequencing projects.
+
+
+
+
