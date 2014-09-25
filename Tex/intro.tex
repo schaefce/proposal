@@ -1,4 +1,13 @@
-\section{Introduction}
+\chapter{Introduction}
 \label{intro}
 Repetitive DNA makes up a significant portion of most genomes, especially those of eukaryotic organisms. Repetitive DNA accounts for over one-third of the genetic material of higher organisms \cite{britten1968repeated}. In fact, the Human Genome Project revealed that over one half of the DNA in the human genome is composed of these repetitive sequences \cite{lander2001initial}.
 
+Due to the inexact nature of repeats, their detection has become a significant problem in bioinformatics \cite{figueroa2013raider}. Over long periods of time, these repetitive sequences have accumulated mutations. Therefore, identification of repeats cannot be limited to the identification of identical subsequences in the genome. Rather, there needs to be a concept of sequence similarity, allowing us to measure the similarity of two sequences and determine whether or not they are a "match" (i.e. descend from the same initial repeat sequence).
+
+This proposal seeks to improve an already existing repeat finding tool, known as Rapid Ab Initio Detection of Elementary repeats (RAIDER) \cite{figueroa2013raider}. Through an in-depth study of this tool and of approaches to finding approximate repeats, we hope to significantly improve upon RAIDER's current ability to detect approximate repeats.
+
+We will go over the necessary background associated with the approximate repeat-finding problem. This will include a cursory discussion of the genome and DNA as strings, and then we will go in depth into concepts such as string matching, as well as the characterization of both exact (identical) repeats and approximate (similar) repeats. 
+
+Following a review of the common techniques employed in repeat-finding tools, we will focus on background and definitions associated with $k$-mer and spaced seed approaches, which are both used in RAIDER. Following this, we will discuss our proposed study of improving RAIDER's sensitivity to finding approximate repeats and give an expected timeline of our work.
+
+\clearpage

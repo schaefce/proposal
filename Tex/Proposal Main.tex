@@ -1,7 +1,8 @@
-\documentclass[12pt, draft, twoside, onecolumn, technote]{IEEEtran}
+%\documentclass[12pt, draft, twoside, onecolumn, technote]{IEEEtran}
 
+\documentclass[cs, msthesis, isproposal]{usuthesis}
 
-
+\usepackage{array}
 \usepackage{amsthm, amsmath}
 \usepackage{float}
 %\usepackage{subcaption}
@@ -10,14 +11,21 @@
 \intextsep=10mm					% controls spacing before and after figures and tables
 \include{theoremdefns}
 
+\title{Improving Sensitivity to Approximate Repetitive DNA}
+\author{Charlotte E. Schaeffer}
+\degree{Master of Science}
+\month{September}
+\year{2014}
+\majorprof{Dr. John Karro}
 
 \begin{document}
+\doublespacing
 \input{titlepage}
 \input{intro}
 \input{background}
 \input{proposal}
 \input{calendar}
-
+\clearpage
 \bibliographystyle{ieeetr}
 \bibliography{bibliography}
 

@@ -1,0 +1,18 @@
+
+\section{Survey of Repeat Finding Tools}
+Over the years following the discovery of the abundance of repetitive DNA, a variety of repeat finding algorithmic approaches and tools have been developed \cite{saha2008computational}. Repeat finding tools can be broken down into two main categories: library-based and ab initio.
+
+\subsubsection{Library Based Tools. } Library-based tools compare input genomic data to an existing library of repeat sequences in order to identify known repeats. RepeatMasker \cite{smit1996repeatmasker} is currently the most widely used library-based repeat finding tool \cite{saha2008computational}. It compares the consensus sequences from known repeat families, stored in a database called RepBase, to search for new members of each family based on similarity.
+
+\subsubsection{Ab Initio Tools. }Ab initio tools attempt to identify repeats without using any pre-existing knowledge of known repeat sequences or motifs. While both of these techniques are widely used, \textit{ab initio} tools are becoming increasingly important due to the rise in number and diversity of sequences coming from genome sequencing projects. 
+
+The approaches that have been used so far in the ab initio identification of repeats and are of interest to this research can be grouped into two basic categories \cite{saha2008computational}.
+
+\begin{enumerate}
+\item{k-mer approaches find all exact substrings that have a frequency equal to or greater than some defined threshold. Examples of tools that are based on this approach include REPuter \cite{kurtz2001reputer} and RepeatScout \cite{price2005novo}.}
+\item{Spaced seed approaches are similar to k-mer approaches, but they use spaced seeds when matching two strings in order to allow some predefined amount of differences between the strings (including substitutions, insertions, and deletions). PatternHunter \cite{ma2002patternhunter} was the first tool to use this approach. It was later followed by PatternHunter II \cite{li2003patternhunter2}, which allowed for the use of multiple spaced seeds.}
+\end{enumerate}
+
+
+
+
