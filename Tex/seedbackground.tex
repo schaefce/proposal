@@ -2,19 +2,22 @@
 Now we begin to consider a method that has been used in both sequence alignment and repeat-finding tools in order to improve the identification of approximate repeats. Spaced seeds are basically patterns describing what positions in two strings must match and what positions in two strings can be a match or a mismatch (don't care positions). It is fairly easy to see that spaced seeds can aide in the identification of $k$-mismatches approximate repeats, but not in $k$-difference approximate repeats because they do not provide a mechanism to care about which character is at position $i$ in one of the strings without caring about which character is at position $i$ in the other string. We begin with a more formal definition of a spaced seed.
 
 \begin{defn}[Spaced Seed]
-A \textbf{spaced seed} is a string $\pi$ over the alphabet $\Sigma =\lbrace 1,* \rbrace$, where a position with value 1 is a match and a position with value * is a "wildcard position" that can be either a match or a mismatch \cite{chao2008sequence}. \end{defn}
+A \textbf{spaced seed} is a string $\pi$ over the alphabet $\Sigma =\lbrace 1,* \rbrace$ that defines the required pattern of matching between two strings, wherea position with value 1 corresponds to a match and a position with value * is a ”wildcard position” that corresponds to eithereither a match or a mismatch \cite{chao2008sequence}. \end{defn}
 
-A spaced seed $\pi$ is inherently defined by an ordered list of matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$ \cite{buhler2005designing}. The number of matching positions is the seed's \textit{weight}, denoted $w_{\pi}$. The \textit{length} or \textit{span} of the seed is denoted $\lvert \pi \rvert$. 
-
-As previously mentioned, we can use spaced seeds when determining whether or not two sequences form a $k$-mismatch for some threshold $k$ and therefore can be categorized as a match. We will go on to define a match between two lmers in terms of spaced seeds, and then use this to build the definition of a match between two longer sequences with lmer decompositions.
+A spaced seed $\pi$ is inherently defined by an ordered list of matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$ \cite{buhler2005designing}. The number of matching positions is the seed's \textit{weight}, denoted $w_{\pi}$. The \textit{length} or \textit{span} of the seed is denoted $\lvert \pi \rvert$. As previously mentioned, a spaced seed defines some required pattern of matching between two strings. We go on to define a match between two l-mers in terms of spaced seeds. 
 
 \begin{defn}
-Let $\pi$ be a spaced seed of length $L$ with matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$. Let $q$ and $t$ be genomic sequences of length $L$. We say that $t$ \textbf{matches} $q$ with respect to $\pi$ if $q_{i} = t_{i} \ \forall i \in M_{\pi}$. Further, if the previous condition is met and $w_{\pi} \geq L-k$ we can say that $t$ \textbf{k-mismatches} $q$  with respect to $\pi$.
+Let $\pi$ be a spaced seed of length $L$ with matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$. Let $q$ and $t$ be genomic sequences of length $L$. We say that $t$ \textbf{matches} $q$ with respect to $\pi$ if $q_{i} = t_{i} \ \forall i \in M_{\pi}$ \cite{buhler2005designing}.
 \end{defn}
+
+This definition can be used to build the definition of a match between two longer sequences with l-mer decompositions.
 
 \begin{defn}
 Let $\pi$ be a spaced seed of length $L$ with matching positions $M_{\pi} = \lbrace i_{1} \dotsc i_{w} \rbrace$. Let $Q$ and $T$ be two genomic sequences of length $n$ with Lmer decompositions $x_{1},x_{2},\dotsc ,x_{k}$ and $y_{1},y_{2},\dotsc ,y_{k}$, respectively (where $k = n - L + 1$). We say that $T$ \textbf{matches} $Q$ with respect to $\pi$ if $\forall \  i \in \lbrace 0, n) \ \exists j \in \lbrace 0, n-L)$ such that $j \leq i < j+L$ and $x_{j}$ matches $y_{j}$ with respect to $\pi$.
+\label{bigmatch}
 \end{defn}
 
-We say that two genomic sequences $Q,T$ match one another if every position $i \in \lbrace 0,n)$ corresponds to Lmers $x_{j} \in Q$ and $y_{j} \in T$ spanning positions $\lbrace j,j+L)$ that match one another with respect to some spaced seed $\pi$.
+From Definition~\ref{bigmatch}, two genomic sequences $Q,T$ match one another if every position $i \in \lbrace 0,n)$ corresponds to Lmers $x_{j} \in Q$ and $y_{j} \in T$ spanning positions $\lbrace j,j+L)$ that match one another with respect to some spaced seed $\pi$.
+
+If two l-mers $q$ and $t$ match with respect to some spaced seed $\pi$ and $w_{\pi} \geq L-k$, these l-mers form a \textbf{k-mismatch} $q$. We can go on to use spaced seeds when determining whether or not two sequences form a $k$-mismatch for some threshold $k$ and therefore can be categorized as a match.
 

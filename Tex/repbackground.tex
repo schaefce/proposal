@@ -1,5 +1,7 @@
 \section{Defining Repeats}
-As previously mentioned, we can treat DNA sequences as strings over the alphabet $\Sigma=\lbrace A, C, G, T \rbrace$. For this reason, similar to string matchings, we can classify repeats as either exact or approximate. Zheng and Lonardi \cite{zheng2005discovery} proposed a bottom-up approach to defining repeats, through the definition of \textit{elementary repeats}. Elementary repeats are sequences that (1) meet the prescribed minimum length and frequency thresholds to be considered a repeat, and (2) do not contain any subsequences that would also satisfy (1). The following are the precise definitions for both exact and approximate elementary repeats, as described by Zheng and Lonardi.
+As previously mentioned, we can treat DNA sequences as strings over the alphabet $\Sigma=\lbrace A, C, G, T \rbrace$. For this reason, similar to string matchings, we can classify repeats as either exact or approximate. An exact repeat is a subsequence of DNA that exactly matches other subsequences of DNA in the same genome, while an approximate repeat is a subsequence of DNA that approximately matches other subsequences in the same genome.
+
+Zheng and Lonardi \cite{zheng2005discovery} proposed a bottom-up approach to defining repeats, through the definition of \textit{elementary repeats}. Elementary repeats are sequences that (1) meet the prescribed minimum length and frequency thresholds to be considered a repeat, and (2) do not contain any subsequences that would also satisfy (1). The following are the precise definitions for both exact and approximate elementary repeats, as described by Zheng and Lonardi.
 
 \subsection{Exact Repeats}
 \begin{defn}[Exact Elementary Repeat]
@@ -7,8 +9,8 @@ Let $S$ be an input genomic sequence. Let $l, f$ be some fixed thresholds for th
 \begin{enumerate}
 \item{$|A| \geq l$}
 \item{$freq(A) \geq f$}
-\item{$\forall$ $i, j \in [0,|A|-1] s.t. j-i \geq l$,  $freq(A[i,j]) = freq(A)$}
-\item{$\not\exists\ A'$ s.t. $A$ is a subsequence of $A'$ and $freq(A') = freq(A)$}
+\item{$\forall$ $i, j \in [0,|A|-1] s.t. j-i \geq l$,  $freq(A[i,j]) = freq(A)$, and}
+\item{$\not\exists\ A'$ s.t. $A$ is a subsequence of $A'$ and $freq(A') = freq(A)$ \cite{zheng2005discovery}.}
 \end{enumerate}
 \label{exactrept}
 \end{defn}
@@ -20,34 +22,26 @@ In order to go on to define an approximate elementary repeat, we must revisit th
 \begin{notate}
 Suppose we have two sequences, $A$ and $A'$.
 \begin{itemize}
-\item[-]{\textbf{Hamming Distance.} Let $R^*=\lbrace r_{1}, \dotsc, r_{p}\rbrace$ be a minimum length sequence from the set of all possible replacement operation sequences that will transform $A$ into $A'$. Then,
-\begin{enumerate}
-\item{The Hamming distance between $A$ and $A'$ is denoted $d_{H}(A, A') = |R^*|$. We say that $A$ forms a \textit{k-mismatch} with $A'$ if $d_{H}(A, A') \leq k$ for some constant $k$.}
-\item{Suppose $A$ is a subsequence of $S$ and $k$ is some fixed constant. Let $S_{H,k}(A)$ be the set of all non-overlapping subsequences of $S$ that form a k-mismatch with $A$, and denote the size of this set as $f_{H,k}(A)$.}
-\item{For any substring $B$ of $A$, the string $B'$ that results from performing the replacement operations from $R^*$ on $B$ is called the \textit{H-image} of $B$ induced by $A$.}
-\end{enumerate}}
 
 \item[-]{\textbf{Edit Distance.} Let $E^*=\lbrace e_{1},\dotsc, e_{q} \rbrace$ be a minimum length sequence from the set of all possible edit operation sequences that will transform $A$ into $A'$. Then, 
 \begin{enumerate}
 \item{The edit distance between $A$ and $A'$ is denoted $d_{E}(A, A') = |E^*|$. We say that $A$ forms a \textit{k-difference} with $A'$ if $d_{E}(A, A') \leq k$ for some constant $k$.} 
-\item{Suppose $A$ is a subsequence of $S$ and $k$ is some fixed constant. Let $S_{E,k}(A)$ be the set of all non-overlapping subsequences of $S$ that form a k-difference with $A$, and denote the size of this set as $f_{E,k}(A)$.}
+\item{Suppose $A$ is a subsequence of $S$ and $k$ is some fixed constant. Let $S_{E,k}(A)$ be the maximum size set of all non-overlapping subsequences of $S$ that form a k-difference with $A$, and denote the size of this set as $f_{E,k}(A)$}
 \item{For any substring $B$ of $A$, the string $B'$ that results from performing the edit operations from $E^*$ on $B$ is the \textit{E-image} of $B$ induced by $A$.}
 \end{enumerate}}
+
+\item[-]{\textbf{Hamming Distance.} Let $R^*=\lbrace r_{1}, \dotsc, r_{p}\rbrace$ be a minimum length sequence from the set of all possible replacement operation sequences that will transform $A$ into $A'$. Then,
+\begin{enumerate}
+\item{The Hamming distance between $A$ and $A'$ is denoted $d_{H}(A, A') = |R^*|$. We say that $A$ forms a \textit{k-mismatch} with $A'$ if $d_{H}(A, A') \leq k$ for some constant $k$.}
+\item{Suppose $A$ is a subsequence of $S$ and $k$ is some fixed constant. Let $S_{H,k}(A)$ be the maximum size set of all non-overlapping subsequences of $S$ that form a k-mismatch with $A$, and denote the size of this set as $f_{H,k}(A)$.}
+\item{For any substring $B$ of $A$, the string $B'$ that results from performing the replacement operations from $R^*$ on $B$ is called the \textit{H-image} of $B$ induced by $A$.}
+\end{enumerate}}
+
+
 \end{itemize}
 \end{notate}
 
-\begin{defn}[$k$-Mismatches Approximate Elementary Repeat]
-Let $S$ be an input genomic sequence. Let $l, f, k$ be some fixed thresholds for the minimum length, frequency, and matching, respectively. A subsequence $A$ of $S$ is a \textbf{k-mismatches approximate elementary repeat} if:
-\begin{enumerate}
-\item{$|A| \geq l$} 
-\item{$f_{H,k}(A) \geq f$}
-\item{$\forall$ $i, j \in [0,|A|-1] \ s.t. \ j-i \geq l$, every H-image of $A[i,j]$ induced by $A$ must form a $k$-mismatch with $A[i,j]$ and $f_{H,k}(A[i,j]) = f_{H,k}(A)$}
-\item{$\not\exists \ A'$  s.t. $A$ is a subsequence of $A'$, every H-image of $A$ induced by $A'$ forms a $k$-mismatch with $A$, and $f_{H,k}(A) = f_{H,k}(A')$}
-\end{enumerate}
-\label{approxrepthamming}
-\end{defn}
-
-From Definition~\ref{approxrepthamming}, we see that $A$ must have sufficient length and that there must be a certain number of sequences that form a $k$-mismatch with $A$. Additionally, no subsequence of $A$ that satisfies the length and $k$-mismatch frequency requirements can occur outside of $A$. Lastly, $A$ must be maximal, meaning that $A$ is not a subsequence of some other sequence $A'$ with equal $k$-mismatch frequency in the genomic sequence.
+We can go on to define an approximate elementary repeat using either of these distance measures to define repeat similarity. The following defines approximate elementary repeats as subsequences of DNA where no two subsequences have an edit distance larger than some predifined threshold of similarity. It is based on the definition proposed by Zheng and Lonardi \cite{zheng2005discovery}, with some additional information.
 
 \begin{defn}[$k$-Differences Approximate Elementary Repeat]
 Let $S$ be an input genomic sequence. Let $l, f, k$ be some fixed thresholds for the minimum length, frequency, and matching, respectively. A subsequence $A$ of $S$ is a \textbf{k-differences approximate elementary repeat} if:
@@ -61,4 +55,22 @@ Let $S$ be an input genomic sequence. Let $l, f, k$ be some fixed thresholds for
 \end{defn}
 
 From Definition~\ref{approxreptedit}, we see that $A$ must have sufficient length and that there must be a certain number of sequences that form a $k$-difference with $A$. Additionally, no subsequence of $A$ that satisfies the length and $k$-difference frequency requirements can occur outside of $A$. Lastly, $A$ must be maximal, meaning that $A$ is not a subsequence of some other sequence $A'$ with equal $k$-difference frequency in the genomic sequence.
+
+
+Now, we define approximate elementary repeats as subsequences of DNA where no two subsequences have a Hamming distance larger than some predifined threshold of similarity. 
+
+\begin{defn}[$k$-Mismatches Approximate Elementary Repeat]
+Let $S$ be an input genomic sequence. Let $l, f, k$ be some fixed thresholds for the minimum length, frequency, and matching, respectively. A subsequence $A$ of $S$ is a \textbf{k-mismatches approximate elementary repeat} if:
+\begin{enumerate}
+\item{$|A| \geq l$} 
+\item{$f_{H,k}(A) \geq f$}
+\item{$\forall$ $i, j \in [0,|A|-1] \ s.t. \ j-i \geq l$, every H-image of $A[i,j]$ induced by $A$ must form a $k$-mismatch with $A[i,j]$ and $f_{H,k}(A[i,j]) = f_{H,k}(A)$, and}
+\item{$\not\exists \ A'$  s.t. $A$ is a subsequence of $A'$, every H-image of $A$ induced by $A'$ forms a $k$-mismatch with $A$, and $f_{H,k}(A) = f_{H,k}(A')$ \cite{zheng2005discovery}}
+\end{enumerate}
+\label{approxrepthamming}
+\end{defn}
+
+From Definition~\ref{approxrepthamming}, we see that $A$ must have sufficient length and that there must be a certain number of sequences that form a $k$-mismatch with $A$. Additionally, no subsequence of $A$ that satisfies the length and $k$-mismatch frequency requirements can occur outside of $A$. Lastly, $A$ must be maximal, meaning that $A$ is not a subsequence of some other sequence $A'$ with equal $k$-mismatch frequency in the genomic sequence.
+
+From the previously provided definitions of Hamming distance and edit distance, we see that the edit distance between two strings will always be at least as small as the Hamming distance between these strings. Therefore, it is apparent that any subsequence that can be classified as a $k$-matches approximate repeat can automatically be classified as a $k$-differences approximate repeat i.e. the set of all $k$-matches approximate repeats in a genome is a subset of the set of all $k$-differences approximate repeat in that same genome.
 
