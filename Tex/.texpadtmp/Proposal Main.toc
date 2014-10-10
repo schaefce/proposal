@@ -1,8 +1,16 @@
-\contentsline {section}{\numberline {I}Introduction}{2}
-\contentsline {section}{\numberline {II}Background}{2}
-\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Biological Background}{2}
-\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Repetitive DNA}{2}
-\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Spaced Seeds}{2}
-\contentsline {section}{\numberline {III}Proposed Research}{3}
-\contentsline {section}{\numberline {IV}Timeline}{3}
-\contentsline {section}{References}{3}
+\contentsline {chapter}{ABSTRACT}{2}
+\contentsline {chapter}{\numberline {1}Introduction}{4}
+\contentsline {chapter}{\numberline {2}Background}{5}
+\contentsline {section}{\numberline {2.1}Biological Background}{5}
+\contentsline {section}{\numberline {2.2}String Matching}{5}
+\contentsline {section}{\numberline {2.3}Defining Repeats}{7}
+\contentsline {subsection}{\numberline {2.3.1}Exact Repeats}{7}
+\contentsline {subsection}{\numberline {2.3.2}Approximate Repeats}{8}
+\contentsline {section}{\numberline {2.4}Survey of Repeat Finding Tools}{10}
+\contentsline {subsubsection}{Library Based Tools. }{10}
+\contentsline {subsubsection}{Ab Initio Tools. }{10}
+\contentsline {section}{\numberline {2.5}$l$-mer ($k$-Mer) Approach}{11}
+\contentsline {section}{\numberline {2.6}Spaced Seed Approach}{12}
+\contentsline {section}{\numberline {2.7}RAIDER}{13}
+\contentsline {chapter}{\numberline {3}Proposed Research}{14}
+\contentsline {chapter}{\numberline {4}Timeline}{14}

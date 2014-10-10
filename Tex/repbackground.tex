@@ -4,6 +4,8 @@ As previously mentioned, we can treat DNA sequences as strings over the alphabet
 Zheng and Lonardi \cite{zheng2005discovery} proposed a bottom-up approach to defining repeats, through the definition of \textit{elementary repeats}. Elementary repeats are sequences that (1) meet the prescribed minimum length and frequency thresholds to be considered a repeat, and (2) do not contain any subsequences that would also satisfy (1). The following are the precise definitions for both exact and approximate elementary repeats, as described by Zheng and Lonardi.
 
 \subsection{Exact Repeats}
+In short, an elementary repeat is a sequence that appears multiple times across the genome, has no (sufficiently) long subsequences that can themselves be considered independent repeats, and can is not itself exclusively tied to a larger sequence qualifying as a repeat. Definition~\ref{exactrept} gives a more precise definition.
+
 \begin{defn}[Exact Elementary Repeat]
 Let $S$ be an input genomic sequence. Let $l, f$ be some fixed thresholds for the minimum length and frequency, respectively.  A subsequence $A$ of $S$ is an \textbf{exact elementary repeat} if:
 \begin{enumerate}
@@ -25,7 +27,7 @@ Suppose we have two sequences, $A$ and $A'$.
 
 \item[-]{\textbf{Edit Distance.} Let $E^*=\lbrace e_{1},\dotsc, e_{q} \rbrace$ be a minimum length sequence from the set of all possible edit operation sequences that will transform $A$ into $A'$. Then, 
 \begin{enumerate}
-\item{The edit distance between $A$ and $A'$ is denoted $d_{E}(A, A') = |E^*|$. We say that $A$ forms a \textit{k-difference} with $A'$ if $d_{E}(A, A') \leq k$ for some constant $k$.} 
+\item{The edit distance between $A$ and $A'$ is denoted $d_{E}(A, A') = |E^*|$. We say that $A$ forms a \textit{$k$-difference} with $A'$ if $d_{E}(A, A') \leq k$ for some constant $k$.} 
 \item{Suppose $A$ is a subsequence of $S$ and $k$ is some fixed constant. Let $S_{E,k}(A)$ be the maximum size set of all non-overlapping subsequences of $S$ that form a k-difference with $A$, and denote the size of this set as $f_{E,k}(A)$}
 \item{For any substring $B$ of $A$, the string $B'$ that results from performing the edit operations from $E^*$ on $B$ is the \textit{E-image} of $B$ induced by $A$.}
 \end{enumerate}}
