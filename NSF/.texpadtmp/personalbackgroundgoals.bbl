@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{figueroa2013raiderpaper}
+N.~Figueroa, X.~Liu, J.~Wang, and J.~Karro, ``Raider: Rapid ab initio detection
+  of elementary repeats,'' in {\em Advances in Bioinformatics and Computational
+  Biology}, pp.~170--180, Springer, 2013.
+
+\bibitem{treangen2012repetitive}
+T.~J. Treangen and S.~L. Salzberg, ``Repetitive dna and next-generation
+  sequencing: computational challenges and solutions,'' {\em Nature Reviews
+  Genetics}, vol.~13, pp.~36--46, 01 2012.
+
+\bibitem{britten1968repeated}
+R.~Britten and D.~Kohne, ``Repeated sequences in dna,'' {\em Science},
+  vol.~161, pp.~529--540, August 1968.
+
+\end{thebibliography}

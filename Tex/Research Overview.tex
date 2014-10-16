@@ -1,0 +1,51 @@
+\documentclass[12pt, doublespace]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{setspace}
+%\onehalfspacing
+
+\titleformat*{\section}{\large\bfseries}
+\renewcommand\thesection{\arabic{section}.}
+\titleformat*{\subsection}{\centering\normalsize\bfseries}
+\renewcommand\thesubsection{}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{6pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{10pt plus 4pt minus 2pt}{2pt plus 0pt minus 2pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\lhead{\COURSE}
+\chead{\textbf{\HWNUM}}
+\rhead{\today}
+\begin{document}
+
+\newcommand\COURSE{Charlotte Schaeffer}
+\newcommand\HWNUM{Research Overview}             
+For the past year, I have been researching under Dr. John Karro, a professor in the Computer Science Department at Miami University whose main research area is bioinformatics. One significant problem in bioinformatics is the detection of repetitive DNA in a genome. My research seeks to improve the sensitivity of an already existing repeat-finding tool, known as Rapid Ab Initio Detection of Elementary Repeats (RAIDER) \cite{figueroa2013raiderpaper}.
+
+\subsection{Background}
+
+Identifying repetitive sequences within a genome is one of the fundamental problems in bioinformatics. Repetitive DNA makes up a significant portion of most eukaryotic genomes \cite{pevzner2004de-novo}. In fact, the Human Genome Project revealed that over one half of the DNA in the human genome is composed of these repetitive sequences \cite{lander2001initial}.
+
+Repeats can be categorized to be either exact or approximate. An exact repeat is a subsequence that occurs multiple times in the same genome; an approximate repeat is a subsequence that approximately matches multiple other subsequences in the same genome, where two subsequences can differ to some degree and still be considered a valid match. Over long periods of time, originally identical repetitive sequences, which were all copies of some ancestral sequence, have accumulated mutations. Therefore, the detection of approximate repeats can provide information about a particular genome as well as the composition of genomes from previous generations. For this reason, a repeat-finding tool's ability to detect approximate repeats is extremely valuable. 
+
+\subsection{Repeat-Finding Tool Evaluation}
+In order to make any statements about whether modifications I make significantly improve RAIDER, I needed a way to quantitatively evaluate RAIDER. I worked with Dr. Karro to create an evaluation tool that would compare the results of RAIDER and RepeatScout, a widely used repeat-finding tool, when both were run on the same simulated DNA sequence. This chromosome sequence simulator was created by Dr. Karro. I provided for the necessary steps in order to run RAIDER and RepeatScout on the simulated sequence, using a pipeline to continuously submit jobs to the Miami University cluster and read the results from these submitted jobs. The use of a cluster was necessary in order to quickly obtain the results of these tools.
+
+After getting the results of both RAIDER and RepeatScout, I created a module to calculate relevant statistics about their performance. Since the chromosome being used was simulated, the locations of the repeats in the genome were already known. Therefore, I could determine the number of bases that were accurately and inaccurately categorized as part of a repeat or not part of a repeat (true and false positives or negatives). Such information is necessary in order to calculate the sensitivity (true positive rate) and specificity (true negative rate) for each tool, in addition to other related calculations.
+
+This evaluation tool can now be used to get the results of running one or more repeat-finding tools (currently limited to RAIDER and RepeatScout) on a genomic sequence or, if preferable, on a specified number of simulated sequences based off of a genomic sequence. It analyzes the repeats found by the tool, giving statistics regarding the tool's ability to correctly determine whether a base is part of a repeat.
+
+\subsection{Repeat-Finding Tool Modifications}
+Through my thesis research, I hope to improve upon RAIDER's current ability to detect approximate repeats. 
+RAIDER, like some other repeat-finding tools, uses spaced seeds to improve the identification of approximate repeats. Spaced seeds are basically patterns describing what positions in two strings must match and what positions in two strings can be a match or a mismatch (don't care positions). However, RAIDER currently only allows for a single spaced seed to be used in repeat detection, and this seed is chosen arbitarily \cite{figueroa2013raiderpaper}. 
+
+It stands to reason that the sensitivity of RAIDER to the detection of approximate repeats could be improved through a more in-depth study of spaced seeds and approximate repeats. I am currently investigating ways to modify the algorithm used in RAIDER in order for spaced seeds to be used more effectively. From my research into other repeat-finding tools, I hypothesize that simply changing the primary data structure used in the algorithm could have significant effects on RAIDER's ability to correctly classify approximate repeats.
+
+
+In the near future, I plan on investigating how to most efficiently use spaced seeds to improve RAIDER's sensitivity. I will look into the potential use of multiple spaced seeds, which would improve RAIDER's sensitivity to approximate repeats by increasing the likelihood that two subsequences would be described as a match by at least one of the seeds. Additional improvements could be acheived through investigating seed design and analysis to determine what characteristics of a spaced seed make it better suited for repeat-finding purposes. An  optimized spaced seed design could allow for a few optimized spaced seeds to be as sensitive to repeat finding as many non-optimized spaced seeds. This information could allow for an improved detection of repeats without significantly affecting the space complexity of the RAIDER algorithm.
+
+
+\bibliography{bibliography}
+\bibliographystyle{IEEEtran}
+\end{document}
+
