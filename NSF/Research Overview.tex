@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\lhead{\COURSE}
+\chead{\textbf{\HWNUM}}
+\rhead{\today}
+\begin{document}
+
+\newcommand\COURSE{Charlotte Schaeffer}
+\newcommand\HWNUM{Research Overview}             
+
+\s
+Identifying repetitive sequences within a genome is one of the fundamental problems in bioinformatics. Repetitive DNA is a significant portion of most eukaryotic genomes \cite{pevzner2004de-novo}. This proposal seeks to improve an already existing repeat finding tool, known as Rapid Ab Initio Detection of Elementary Repeats (RAIDER) \cite{figueroa2013raiderpaper}. We hope to improve upon this tool's current ability to detect approximate repeats through the an in-depth study of spaced seeds, which are commonly used to detect approximate matches in strings. RAIDER currently only allows for single, abritrarily chosen, spaced seeds. This proposal will investigate whether the sensitivity of RAIDER to the detection of approximate repeats could be improved through the use of multiple seeds, more careful seed design and analysis, and/or changes to the algorithm that would make it more amenable to the use of spaced seeds.
+\bibliography{bibliography}
+\bibliographystyle{IEEEtran}
+\end{document}
+

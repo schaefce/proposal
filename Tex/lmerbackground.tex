@@ -1,0 +1,24 @@
+\section{$l$-mer ($k$-Mer) Approach}
+One approach to repeat-finding that is of particular interest is the $k$-mer approach, which will henceforth be referred to as the \textit{$l$-mer} approach. An l-mer is simply a subsequence of the genomic sequence of length equal to $l$, some fixed constant. We will begin to describe this topic using some observations and definitions from Figueroa \cite{figueroa2013raider}.
+
+\begin{lem}
+Every $l$-mer belongs to at most one elementary repeat family.
+\end{lem}
+\begin{proof}
+Assume for contradiction an $l$-mer x belongs to two families, F1 and F2. According to Definition~\ref{exactrept}, this makes x a substring of F1 of significant length. However, since x also occurs in F2, $freq(x) = freq(F1) + freq(F2)$. This means that $freq(x) > freq(F1)$, violating condition (4) of the definition.
+\end{proof}
+
+
+\begin{defn}
+Given strings $x$ and $y$, define \textbf{x$\circ$y} as the string $abc$, where $x=ab$, $y=bc$, and $b$ is the longest substring that is both a suffix of $x$ and a prefix of $y$.
+\end{defn}
+
+\begin{defn}[$l$-mer Series]
+An \textbf{$l$-mer series} is a sequence of $l$-mers $x_{0}, x_{1}, \dotsc x_{k-1}$ in the query sequence such that the start coordinate of $x_{i}$ is one greater than the start coordinate of $x_{i-1}$. A sequence $F$ is \textbf{composed} from an $l$-mer series if $F=x_{0}\circ x_{1}\circ\dotsm x_{k-1}.$
+\end{defn}
+
+\begin{defn}[$l$-mer Decomposition]
+Given a subsequence $F$ of the query sequence, the \textbf{$l$-mer decomposition} of $F$ is the $l$-mer series $x_{0}, x_{1}, \dotsc x_{k-1}$ such that $F$ is composed of the series.
+\end{defn}
+
+Using these definitions, we can go on to redefine elementary repeats using $l$-mers, as described in Figueroa \cite{figueroa2013raider}.

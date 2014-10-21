@@ -1,0 +1,41 @@
+\section{String Matching}
+String matching is fundamental to the process of finding repetitive DNA, and can be categorized into one of two types: exact matchings and inexact matchings \cite{gusfield1997algorithms}. An \textit{exact matching} is when two strings are the same size and are composed of the same sequence of characters. While this type of matching is of use to this discussion, the more relevant type of matching is known as \textit{inexact} or \textit{approximate matching}. 
+
+In the case of approximate matching, two strings $s$ and $t$ can differ to some degree and still be a "valid" match. There are a variety of ways in which two strings can differ \cite{kruskal1983an-overview}. Such differences include, but are not limited to, (1) \textit{substitutions} (replacements) and (2) \textit{indels}, a term used to denote both inserted and deleted characters. 
+
+The differences between strings are also used to characterize the operations that can be used to sequentially transform a source sequence, $s$, into a target sequence, $t$. These operations (substitution, insertion, and deletion) are known as the \textit{elementary edit operations}. For example, consider strings $s=$ BAT and $t=$ BET. We could transform $s$ into $t$ \textit{substituting} the character 'A' in the middle of string $s$ with the character 'E'. Similarly, consider strings $s=$BAT and $t=$BATS. We could transform $s$ into $t$ by \textit{inserting} the character 'S' at the end of $s$.
+
+ There are two widely used values we can calculate in order to quantify the overall distance or difference between two strings \cite{kruskal1983an-overview}. 
+ \begin{enumerate}
+ \item{The \textit{Hamming distance} between two strings is the minimum number of substitutions needed to transform the first string into the second.}
+ \item{The \textit{edit distance} or \textit{Levenshtein distance} \cite{levenshtein1966binary} between two strings is the minimum number of elementary edit operations (substitutions, insertions, and deletions) needed in order to transform the first string into the second.}
+ \end{enumerate}
+Consider the scenario depicted in Figure~\ref{editdistex}, where we are attempting to transform source string $s=$ INDUSTRY into target string $t=$ INTEREST. We can transform $s$ into $t$ using a minimum of 6 substitution operations, so the Hamming distance between $s$ and $t$ is 6 (left). It also takes a minimum of 6 elementary edit operations  transform $s$ into $t$, so the Levenshtein distance between $s$ and $t$ is 6 (right). In this case, the ability to use insertions and deletions did not reduce the distance between the strings.
+
+\begin{figure}[b]
+\small
+\begin{minipage}[l]{0.50\textwidth}
+\centering {\normalsize \scshape Hamming Distance}
+\begin{align*}
+\text{INDUSTRY} &\rightarrow \text{INTUSTRY} &&\text{Substitute 'D' by 'T'}\\
+&\rightarrow \text{INTESTRY} &&\text{Substitute 'U' by 'E'}\\
+&\rightarrow \text{INTERTRY} &&\text{Substitute 'S' by 'R'}\\
+&\rightarrow \text{INTERERY} &&\text{Substitute 'T' by 'E'}\\
+&\rightarrow \text{INTERESY} &&\text{Substitute 'R' by 'S'}\\
+&\rightarrow \text{INTEREST} &&\text{Substitute 'Y' by 'T'}
+\end{align*}
+\end{minipage}%
+\hspace{4ex} \begin{minipage}[r]{0.50\textwidth}
+\centering {\normalsize \scshape Levenshtein Distance}
+\begin{align*}
+\text{INDUSTRY} &\rightarrow \text{INDUSTR} &&\text{Delete 'Y'}\\
+&\rightarrow \text{INDUST} &&\text{Delete 'R'}\\
+&\rightarrow \text{INRUST} &&\text{Substitute 'D' by 'R'}\\
+&\rightarrow \text{INREST} &&\text{Substitute 'U' by 'E'}\\
+&\rightarrow \text{INTREST} &&\text{Insert 'T'}\\
+&\rightarrow \text{INTEREST} &&\text{Insert 'E'}
+\end{align*}
+\end{minipage}
+\caption{It takes a minimum of 6 substitution operations to transform $s$ into $t$ (left). In fact, it takes a minimum of 6 elementary edit operations (substitutions, deletions, and insertions)  to transform $s$ into $t$ (right).}
+\label{editdistex}
+\end{figure}
