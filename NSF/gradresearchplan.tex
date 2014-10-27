@@ -1,5 +1,77 @@
 \documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage[numbers]{natbib}
+\usepackage{todonotes}
+\usepackage{enumitem}
+%\linespread{2}
+\setlist{itemsep=.5pt,topsep=2pt,parsep=2pt}
+\def\bibfont{\footnotesize}
+
+\setlength\bibsep{0pt}
+
+\let\oldbibliography\thebibliography
+\renewcommand{\thebibliography}[1]{%
+  \oldbibliography{#1}%
+  \setlength{\itemsep}{0pt}%
+}
+
+
+\titleformat{\section}[runin]{\normalsize\bf}{}{}{}[]
+\titlespacing*{\section}{0pt}{5pt}{2\parsep}
+\titleformat{\title}[display]{\normalsize\bf}{}{}{}[]
+\titlespacing*{\title}{0pt}{5pt}{2\parsep}
+
 
 \begin{document}
-Present an original research topic that you would like to pursue in graduate school. Describe the research idea, your general approach, as well as any unique resources that may be needed for accomplishing the research goal (i.e., access to national facilities or collections, collaborations, overseas work, etc.) You may choose to include important literature citations. Address the potential of the research to advance knowledge and understanding within science as well as the potential for broader impacts on society. The research discussed must be in a field listed in the Solicitation (Section X, Fields of Study).
+\section*{Prompt}Present an original research topic that you would like to pursue in graduate school. Describe the research idea, your general approach, as well as any unique resources that may be needed for accomplishing the research goal (i.e., access to national facilities or collections, collaborations, overseas work, etc.) You may choose to include important literature citations. Address the potential of the research to advance knowledge and understanding within science as well as the potential for broader impacts on society. The research discussed must be in a field listed in the Solicitation (Section X, Fields of Study).
+\clearpage
+
+%\begin{center}
+%\scshape{Detection of Approximate Repeats in Genomic Sequences}
+%\end{center}
+%\vskip 1pt
+
+\section*{Background}
+
+Repetitive DNA is defined as a set of discrete DNA sequences in the same genome that are similar or identical to one another \cite{britten1968repeated}. It makes up a significant portion of most genomes, accounting for over one-third of the genetic material of higher organisms. As a result, the detection of repetitive sequences of DNA has become a significant problem in bioinformatics \cite{pevzner2004de-novo}.
+
+Over the years following the discovery of the abundance of repetitive DNA, a variety of repeat-finding tools have been developed \cite{saha2008computational}. Library-based tools compare input genomic data to an existing library of repeat sequences in order to identify known repeats. In contrast, ab initio tools attempt to identify repeats without using any pre-existing knowledge of known repeat sequences or motifs. While both of these techniques are widely used, ab initio tools are becoming increasingly important due to the rise in number and diversity of sequences coming from genome sequencing projects. 
+
+Repeats can be categorized to be either exact or approximate. Over long periods of time, originally identical repetitive sequences have accumulated mutations, creating approximate repeats - repeats that are still similar but no longer identical. The detection of approximate repeats can provide information about a particular genome as well as the genomic evolutionary history. Thus, a repeat-finding tool's ability to detect approximate repeats is extremely valuable.
+
+%\todo{time efficiency and repeat representation}
+
+Beyond repeat identification, there lies a problem regarding how to best represent repeats. Pevzner, Tang, and Tesler \cite{pevzner2004de-novo} proposed that repeats could be represented as "mosaics of subrepeats" or "tangle graphs." Their approach focused around the use of a modified de Bruijn graph, which they termed to be the $A$-Bruijn graph. They claimed that representing repeats in this way conserves evolutionary relationships between sub-repeats, which are often lost in other representations of repeat bounds. 
+
+
+\section*{Previous Research}
+For the past year, I have been doing research under Dr. John Karro, with the goal of improving a repeat-finding tool created in our lab, known as Rapid Ab Initio Detection of Elementary Repeats (RAIDER) \cite{figueroa2013raiderpaper}. More specifically, I aim to improve RAIDER's sensitivity to the detection of approximate repeats. 
+
+RAIDER, like other repeat-finding tools, uses spaced seeds to improve the identification of approximate repeats. Spaced seeds are patterns describing which positions in two strings (or sequences) must match, and which positions are not so constrained \cite{buhler2005designing}. RAIDER was not initially developed around a focus on the detection of approximate repeats or the use of spaced seeds, so I am investigating how to best modify the algorithm with spaced seeds in mind without significantly affecting its time efficiency. 
+
+Additionally, RAIDER currently only allows for a single, arbitrarily chosen spaced seed to be used in repeat identification. To improve sensitivity, I am looking into how to modify RAIDER to allow for the use of multiple spaced seeds. Further, I am investigating which characteristics of a spaced seed make the seed better suited for repeat-finding purposes. An  optimized spaced seed design could allow for a few optimized spaced seeds to be as sensitive to repeat finding as many non-optimized spaced seeds; such information could allow for an improved sensitivity without significantly affecting the space complexity of the RAIDER algorithm.
+
+
+\section*{Proposed Research}
+The detection of repetitive sequences of DNA is a significant problem in bioinformatics, especially due to the increase in the number and diversity of genome sequences discovered via genome sequencing projects. 
+
+From my review, I have found three main criteria in which current repeat-finding tools are often lacking:
+\begin{enumerate}
+\item{\textit{Time efficiency.} There are approaches that can accurately determine repeat bounds, but have quadratic time and space requirements. This is unacceptable, as genomic sequences are quite large. }
+\item{\textit{Approximate repeat detection.} Over long periods of time, originally identical repetitive sequences have undergone various mutations. The detection of approximate repeats therefore may have significant evolutionary implications and cannot be ignored. }
+\item{\textit{Meaningful representation of output.} The evolutionary relationships between sub-repeats are often lost in representations of repeat bounds by many repeat-finding tools \cite{pevzner2004de-novo}. }
+\end{enumerate}
+I propose to investigate the problem of repeat classification, with the goal of developing an ab initio repeat-finding tool that sufficiently meets the aforementioned criteria.
+
+My prior research involving the repeat detection, in addition to my background in mathematics, will aid me in this research. I plan to conduct an in-depth study of repeat-finding tools, both past and present, in order to determine which components of an algorithm make it more time effective or able to detect approximate repeats. Further, the work of Pevzner, Tang, and Tesler \cite{pevzner2004de-novo} has led me to believe that a modified de Bruijn graph approach could be used to efficiently determine repeat bounds and still represent these bounds in a more meaningful way. Through the modification and likely combination of existing tools, I hope to come up with a new repeat-finding tool that is time efficient, is sensitive to the detection of approximate repeats, and represents repeats in a meaningful way.
+
+\section*{Broader Impacts}
+As previously mentioned, repetitive DNA makes up a significant portion of eukaryotic genomes; in fact, the Human Genome Project revealed that over one half of the DNA in the human genome is composed of these repetitive sequences \cite{britten1968repeated, lander2001initial}. Although repetitive DNA has been accused of being parasitic, its prevalence and persistence have led many scientists to believe that it may give organisms some sort of evolutionary advantage\cite{saha2008computational}. Regardless, being able to identify and analyze repetitive DNA is necessary in order to have a more complete understanding of eukaryotic genomes.
+
+
+
+
+\bibliography{bibliography}
+\bibliographystyle{IEEEtranN}
 \end{document}
